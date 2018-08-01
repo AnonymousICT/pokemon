@@ -7,36 +7,39 @@ function getPokemonDataFromApi(pokemon, callback) {
 }
 
 function getTypeDataFromApi(type, callback) {
-	let results = `${POKEMON_URL}/type/${type}`
+	for(i=0; i<type.length; i++) {
+	let results = `${POKEMON_URL}/type/${type[i]}`
 	$.getJSON(results,callback)
-	console.log(results)
+		
+	}
+
 }
 
-function renderResults(data) {
+function displaySearchResults (data) {
 	console.log(data);
 	let pokemonNumber = `${data.id}`;
 	let pokemonName = `${data.name}`;
 	let pokemonType = '';
+	let typeData = [];
 	$.each(data.types, function( index , value ) {
 	  pokemonType += `<li>${value.type.name}</li>`
 	  POKEMONTYPE_ARRAY.push(value.type.name);
 	  console.log(POKEMONTYPE_ARRAY);
 	});
-
-	return `<div class='resultsName'>Pokedex #:${pokemonNumber}
+	  typeData += getTypeDataFromApi(POKEMONTYPE_ARRAY,function(newData) {
+		console.log('look at this!', newData);
+	  });
+	//html markup and then your head explode stop reading this because it's fine. Breath. love Howard
+	let str= `<div class='resultsName'>Pokedex #:${pokemonNumber}
 		<h1>Pokemon: ${data.name}</h1>
 		Type(s)
 		<ul>
 			${pokemonType}
 		</ul>	
 	</div>`;
-}
-
-function displaySearchResults (data) {
-	$('.results').html(renderResults(data));
+	$('.results').html(str);
 	
 }
-
 
 function listenSubmitButton() {
 $('.form').on('submit', function(event){
@@ -45,6 +48,7 @@ $('.form').on('submit', function(event){
 	(event.currentTarget).find('.userInput').val().toLowerCase()
 	// console.log(userInput);
 	getPokemonDataFromApi(userInput, displaySearchResults);
+
 })
 }
 
