@@ -7,16 +7,22 @@ function getPokemonDataFromApi(pokemon, callback) {
 }
 
 function getTypeDataFromApi(type) {
+	let doubleArr = [];
+	let halfArr = [];
+	let zeroArr = [];
 	for(i=0; i<type.length; i++) {
 		let results = `${POKEMON_URL}/type/${type[i]}`
 		$.getJSON(results, function(data){
-			console.log(data.damage_relations.double_damage_from, 'double');
-			// console.log(data.damage_relations.half_damage_from, 'half');
-			// console.log(data.damage_relations.no_damage_from, 'no');
-
-		});	
+			doubleArr.push(data.damage_relations.double_damage_from);
+			halfArr.push(data.damage_relations.half_damage_from);
+			zeroArr.push(data.damage_relations.no_damage_from);
+		});
 	}
-
+	return {
+		'double':doubleArr,
+		'half':halfArr,
+		'zero':zeroArr
+	};
 }
 
 function displaySearchResults (data) {
@@ -29,7 +35,8 @@ function displaySearchResults (data) {
 	  POKEMONTYPE_ARRAY.push(value.type.name);
 	  console.log(POKEMONTYPE_ARRAY);
 	});
-	  typeData = getTypeDataFromApi(POKEMONTYPE_ARRAY);
+	typeData = getTypeDataFromApi(POKEMONTYPE_ARRAY);
+	console.log('this is the typeData object!',typeData);
 	//html markup and then your head explode stop reading this because it's fine. Breath. love Howard
 	let str= `<div class='resultsName'>Pokedex #:${pokemonNumber}
 		<h1>Pokemon: ${data.name}</h1>
