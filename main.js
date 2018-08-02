@@ -44,7 +44,28 @@ function displaySearchResults (data) {
 		<ul>
 			${pokemonType}
 		</ul>	
-	</div>`;
+		<ul>`;
+		 // for (let key in typeData){
+		 // 	console.log(key, typeData[key]);
+		 // 	for(let i=0; i<typeData[key].length; i++){
+		 // 		// console.log(key,i);
+		 // 		console.log('bananananana');
+			// 	// console.log(key, i, typeData[key][i]);	 	
+		 // 	}
+		 
+	for (var key in typeData) {
+		console.log(key);
+		console.log(typeData[key]);
+		console.log(typeData['double']);
+		// for (let i=0; i<typeData[key].length; i++) {
+			// console.log(i, typeData[key][i]);
+			// for (let j=0; i<typeData[key][i].length; j++) {
+				// console.log(i, j);
+			// }
+		// }
+	}
+		str +=`</ul>
+	</div>`
 	$('.results').html(str);
 	
 }
