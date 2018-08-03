@@ -13,17 +13,23 @@ function getTypeDataFromApi(type) {
 	for(i=0; i<type.length; i++) {
 		let results = `${POKEMON_URL}/type/${type[i]}`
 		$.getJSON(results, function(data){
-			doubleArr.push(data.damage_relations.double_damage_from);
-			halfArr.push(data.damage_relations.half_damage_from);
-			zeroArr.push(data.damage_relations.no_damage_from);
+			if (data.damage_relations.no_damage_from!==[]) {
+				zeroArr.push(data.damage_relations.no_damage_from);
+			} 
+				doubleArr.push(data.damage_relations.double_damage_from);
+				halfArr.push(data.damage_relations.half_damage_from);
 		});
 	}
-	return {
-		'double':doubleArr,
-		'half':halfArr,
-		'zero':zeroArr
-	};
+	let damageRelations = []
+		damageRelations = [doubleArr,halfArr,zeroArr];
+	return damageRelations;
 }
+
+// function displayTypeResults(data) {
+// 	$.each(data, function(index, value){
+// 		console.log(value)		
+// 	})
+// }
 
 function displaySearchResults (data) {
 	console.log(data);
@@ -31,12 +37,19 @@ function displaySearchResults (data) {
 	let pokemonName = `${data.name}`;
 	let pokemonType = '';
 	$.each(data.types, function( index , value ) {
-	  pokemonType += `<li>${value.type.name}</li>`
+	  pokemonType += `<h3>${value.type.name}
+	  <ul class='${value.type.name}'></ul></h3>`
 	  POKEMONTYPE_ARRAY.push(value.type.name);
 	  console.log(POKEMONTYPE_ARRAY);
 	});
+	//the 2nd call to the API
 	typeData = getTypeDataFromApi(POKEMONTYPE_ARRAY);
 	console.log('this is the typeData object!',typeData);
+	$.each(POKEMONTYPE_ARRAY, function(index, value){
+		console.log(value)
+		// displayTypeResults(value);
+		// $(`.${value}`).html(`<li>${typeData[index]}</li>`)
+	})
 	//html markup and then your head explode stop reading this because it's fine. Breath. love Howard
 	let str= `<div class='resultsName'>Pokedex #:${pokemonNumber}
 		<h1>Pokemon: ${data.name}</h1>
@@ -53,17 +66,17 @@ function displaySearchResults (data) {
 			// 	// console.log(key, i, typeData[key][i]);	 	
 		 // 	}
 		 
-	for (var key in typeData) {
-		console.log(key);
-		console.log(typeData[key]);
-		console.log(typeData['double']);
-		// for (let i=0; i<typeData[key].length; i++) {
-			// console.log(i, typeData[key][i]);
-			// for (let j=0; i<typeData[key][i].length; j++) {
-				// console.log(i, j);
-			// }
-		// }
-	}
+	// for (let key in typeData) {
+	// 	// console.log(key);
+	// 	// console.log(typeData[key]);
+	// 	// console.log(typeData['double']);
+	// 	// for (let i=0; i<typeData[key].length; i++) {
+	// 	// 	console.log(i, typeData[key][i]);
+	// 	// 	for (let j=0; i<typeData[key][i].length; j++) {
+	// 	// 		console.log(i, j);
+	// 	// 	}
+	// 	// }
+	// }
 		str +=`</ul>
 	</div>`
 	$('.results').html(str);
