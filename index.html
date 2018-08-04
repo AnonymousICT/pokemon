@@ -9,15 +9,15 @@
 </head>
 <body>
 	<header role="banner">
-		<h1>Pokemon Type Search</h1>
+		<h1>Pokemon Damage Relation Search</h1>
 	</header>
 	<main role="main">
 		<section role ="region">
-			<form class="form">
-				<input class="userInput" type="text" placeholder="Bulbasaur">
-				<button class="submitButton" type="submit">Submit</button>
+			<form id="form">
+				<input type="text" name="pokemonName" id="pokemonName"  placeholder="Pokemon Name or Pokedex Number">
+				<input type="submit" value="Search">
 			</form>
-			<button class="randomButton" type="submit">Random Pokemon</button>
+			<button class="randomButton">Random Pokemon</button>
 		</section>
 		<section role="region" class="results">
 		</section>

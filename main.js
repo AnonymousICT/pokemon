@@ -1,107 +1,105 @@
 const POKEMON_URL = "https://pokeapi.co/api/v2"
-let POKEMONTYPE_ARRAY=[];
 
-function getPokemonDataFromApi(pokemon, callback) {
-	let results = `${POKEMON_URL}/pokemon/${pokemon}`
-	$.getJSON(results, callback)
-}
-
-function getTypeDataFromApi(type) {
-	let doubleArr = [];
-	let halfArr = [];
-	let zeroArr = [];
-	for(i=0; i<type.length; i++) {
-		let results = `${POKEMON_URL}/type/${type[i]}`
-		$.getJSON(results, function(data){
-			if (data.damage_relations.no_damage_from!==[]) {
-				zeroArr.push(data.damage_relations.no_damage_from);
-			} 
-				doubleArr.push(data.damage_relations.double_damage_from);
-				halfArr.push(data.damage_relations.half_damage_from);
+function getPokemonData(userInput, callback) {
+	//get data from api
+	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
+	$.getJSON(userSelection, function(data) {
+		let typeA = data.types[0].type.name;
+		let typeB = '';
+		if (data.types.length>1) {
+		typeB = data.types[1].type.name;
+		};
+		$('.results').append(`
+			<h1>Pokemon #: ${data.id} ${data.name}</h1>
+			<h2>Type(s):</h2><h3>${typeA}<br>${typeB}</h3>`
+			);
+		console.log(typeA);
+		getPokemonTypeData(typeA, typeB).then(function(results){
+			setTimeout(function(){
+				console.log(results, 'please work?')
+				$('typeResults').append(`<ul>`);
+				for(let key in results) {
+					console.log(key, results[key]);
+					$('.typeResults').append(`
+						<li>${key}: ${results[key]}</li>
+					`);
+				};
+				$('typeResults').append(`</ul>`);
+			},500);
 		});
-	}
-	let damageRelations = []
-		damageRelations = [doubleArr,halfArr,zeroArr];
-	return damageRelations;
-}
-
-// function displayTypeResults(data) {
-// 	$.each(data, function(index, value){
-// 		console.log(value)		
-// 	})
-// }
-
-function displaySearchResults (data) {
-	console.log(data);
-	let pokemonNumber = `${data.id}`;
-	let pokemonName = `${data.name}`;
-	let pokemonType = '';
-	$.each(data.types, function( index , value ) {
-	  pokemonType += `<h3>${value.type.name}
-	  <ul class='${value.type.name}'></ul></h3>`
-	  POKEMONTYPE_ARRAY.push(value.type.name);
-	  console.log(POKEMONTYPE_ARRAY);
 	});
-	//the 2nd call to the API
-	typeData = getTypeDataFromApi(POKEMONTYPE_ARRAY);
-	console.log('this is the typeData object!',typeData);
-	$.each(POKEMONTYPE_ARRAY, function(index, value){
-		console.log(value)
-		// displayTypeResults(value);
-		// $(`.${value}`).html(`<li>${typeData[index]}</li>`)
+};
+
+async function getPokemonTypeData(typeA, typeB) {
+	let typeMultiplier = {
+		normal:1,
+	    fire:1,
+	    fighting:1,
+	    water:1,
+	    flying:1,
+	    grass:1,
+	    poison:1,
+	    electric:1,
+	    ground:1,
+	    psychic:1,
+	    rock:1,
+	    ice:1,
+	    bug:1,
+	    dragon:1,
+	    ghost:1,
+	    dark:1,
+	    steel:1,
+	    fairy:1
+	};
+
+	$.getJSON(`${POKEMON_URL}/type/${typeA}`).done(function(typeAData){
+			for(let i=0; i<typeAData.damage_relations.double_damage_from.length; i++) {
+				typeMultiplier[typeAData.damage_relations.double_damage_from[i].name]*=2.0;
+			}
+			for(let j=0; j<typeAData.damage_relations.half_damage_from.length; j++) {
+				typeMultiplier[typeAData.damage_relations.half_damage_from[j].name]*=0.5;
+			}
+			for(let k=0; k<typeAData.damage_relations.no_damage_from.length; k++) {
+				typeMultiplier[typeAData.damage_relations.no_damage_from[k].name]*=0.0;
+			}
+		}
+	)
+	if (typeB) {
+		$.getJSON(`${POKEMON_URL}/type/${typeB}`).done(function(typeBData){
+				for(let i=0; i<typeBData.damage_relations.double_damage_from.length; i++) {
+				typeMultiplier[typeBData.damage_relations.double_damage_from[i].name]*=2.0;
+				}
+				for(let j=0; j<typeBData.damage_relations.half_damage_from.length; j++) {
+				typeMultiplier[typeBData.damage_relations.half_damage_from[j].name]*=0.5;
+				}
+				for(let k=0; k<typeBData.damage_relations.no_damage_from.length; k++) {
+				typeMultiplier[typeBData.damage_relations.no_damage_from[k].name]*=0.0;
+				}
+			}
+		)
+	}
+	return new Promise(function(resolve,reject) {
+		resolve(typeMultiplier);
 	})
-	//html markup and then your head explode stop reading this because it's fine. Breath. love Howard
-	let str= `<div class='resultsName'>Pokedex #:${pokemonNumber}
-		<h1>Pokemon: ${data.name}</h1>
-		Type(s)
-		<ul>
-			${pokemonType}
-		</ul>	
-		<ul>`;
-		 // for (let key in typeData){
-		 // 	console.log(key, typeData[key]);
-		 // 	for(let i=0; i<typeData[key].length; i++){
-		 // 		// console.log(key,i);
-		 // 		console.log('bananananana');
-			// 	// console.log(key, i, typeData[key][i]);	 	
-		 // 	}
-		 
-	// for (let key in typeData) {
-	// 	// console.log(key);
-	// 	// console.log(typeData[key]);
-	// 	// console.log(typeData['double']);
-	// 	// for (let i=0; i<typeData[key].length; i++) {
-	// 	// 	console.log(i, typeData[key][i]);
-	// 	// 	for (let j=0; i<typeData[key][i].length; j++) {
-	// 	// 		console.log(i, j);
-	// 	// 	}
-	// 	// }
-	// }
-		str +=`</ul>
-	</div>`
-	$('.results').html(str);
-	
-}
+};
 
-function listenSubmitButton() {
-$('.form').on('submit', function(event){
+function userPokemonSelection () {
+//submitbutton
+$('#form').submit(function(event){
 	event.preventDefault();
-	const userInput = $
-	(event.currentTarget).find('.userInput').val().toLowerCase()
-	// console.log(userInput);
-	getPokemonDataFromApi(userInput, displaySearchResults);
+	let userInput = $('#pokemonName').val().trim().toLowerCase();
+	getPokemonData(userInput);
+})
 
+//randombutton
+$('.randomButton').on('click', function(){
+	let userInput = Math.floor(Math.random() * Math.floor(802));
+	getPokemonData(userInput);
 })
 }
 
-function listenRandomPokemonButton () {
-
+function initializeSearchPage () {
+userPokemonSelection();
 }
 
-function init() {
-	listenSubmitButton()
-	listenRandomPokemonButton()
-
-}
-
-$(init);
+$(initializeSearchPage);
