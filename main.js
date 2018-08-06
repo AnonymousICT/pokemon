@@ -21,7 +21,7 @@ function getPokemonData(userInput, callback) {
 		$('.results').html(`
 			<h1>Pokemon #: ${data.id} ${data.name}</h1>
 			<h2>Type(s): </h2><h3>${typeA}<br>${typeB}</h3>
-			<img class="sprite" src="pokemon/${data.id}.png">
+			<img class="sprite" src="assets/pokemon/${data.id}.png">
 
 		`);
 		console.log(typeA, typeB);
@@ -32,7 +32,7 @@ function getPokemonData(userInput, callback) {
 				for(let key in results) {
 					// console.log(key, results[key]);
 					$('.typeResults').append(`
-						<li class="${key}">${key}: ${results[key]}</li>
+						<p class="${key}">${key}: ${results[key]}</p>
 					`);
 				};
 				$('typeResults').append(`</ul>`);
@@ -94,19 +94,33 @@ async function getPokemonTypeData(typeA, typeB) {
 	})
 };
 
+//this eventually just turned into the place where I have all of my event listeners
 function userPokemonSelection () {
-//submitbutton
-$('#form').submit(function(event){
-	event.preventDefault();
-	let userInput = $('#pokemonName').val().trim().toLowerCase();
-	getPokemonData(userInput);
-})
+	//submitbutton
+	$('#form').submit(function(event){
+		event.preventDefault();
+		let userInput = $('#pokemonName').val().trim().toLowerCase();
+		getPokemonData(userInput);
+	})
 
-//randombutton
-$('.randomButton').on('click', function(){
-	let userInput = Math.floor(Math.random() * Math.floor(802));
-	getPokemonData(userInput);
-})
+	//randombutton
+	$('.randomButton').on('click', function(){
+		let userInput = Math.floor(Math.random() * Math.floor(802));
+		getPokemonData(userInput);
+	})
+	//click on a pokeball
+	$('.themeToggle li').click(function() {
+	  	$(this).removeClass('selected');
+  		$('body').removeClass();
+  		$('body').addClass('theme-'+$(this).attr('class'));
+	 	$(this).siblings().removeClass('selected');
+	 	$(this).addClass('selected');
+	})
+	//hover over a pokeball
+	$('.themeToggle li').hover(function(){
+		
+		// $(this).css(`background-image`, url(`assets/gifs/${hoverVariable}_roll01.gif`));
+	})
 }
 
 function initializeSearchPage () {

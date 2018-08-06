@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Zilla Slab', serif;
 }
 
 body {
@@ -9,10 +10,62 @@ body {
     flex-direction: column;
     align-items: center;
 }
+main {
+	flex:1 0 auto;
+}
 ul li {
 	list-style: none;
 }
 
+.theme-pokeball{
+	background-color: #c31d1d;
+	color: white;
+}
+
+.theme-greatball{
+	background-color: #2b85c1;
+	color: snow;
+}
+
+.theme-ultraball{
+	background-color: #484848;
+	color: #f3f326;
+}
+
+.theme-masterball {
+	background-color: #521560;
+	color: #f570d6;
+}
+
 .results h1 {
 	text-transform: capitalize;
+}
+
+.themeToggle {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.themeToggle img {
+	height: 70px
+}
+
+.themeToggle ul {
+	display: inline-flex;
+}
+
+.themeToggle li{
+	margin: 5px
+}
+
+.themeToggle li:hover {
+
+}
+footer{
+	flex-shrink: 0
+}
+
+footer ul li {
+	display: inline-block;
 }
