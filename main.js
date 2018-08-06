@@ -9,23 +9,27 @@ function getPokemonData(userInput, callback) {
 		if (data.types.length>1) {
 		typeB = data.types[1].type.name;
 		};
-		$('.results').append(`
+		
+		$('.results').html(`
 			<h1>Pokemon #: ${data.id} ${data.name}</h1>
-			<h2>Type(s):</h2><h3>${typeA}<br>${typeB}</h3>`
+			<h2>Type(s): </h2><h3>${typeA}<br>${typeB}</h3>
+			<img class="sprite" src="pokemon/${data.id}.png">
+
+			`
 			);
-		console.log(typeA);
+		console.log(typeA, typeB);
 		getPokemonTypeData(typeA, typeB).then(function(results){
 			setTimeout(function(){
 				console.log(results, 'please work?')
-				$('typeResults').append(`<ul>`);
+				$('.typeResults').html(`<ul>`);
 				for(let key in results) {
-					console.log(key, results[key]);
+					// console.log(key, results[key]);
 					$('.typeResults').append(`
-						<li>${key}: ${results[key]}</li>
+						<li class="${key}">${key}: ${results[key]}</li>
 					`);
 				};
 				$('typeResults').append(`</ul>`);
-			},500);
+			},3000);
 		});
 	});
 };

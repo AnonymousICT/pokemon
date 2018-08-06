@@ -9,4 +9,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
+ul li {
+	list-style: none;
 }
