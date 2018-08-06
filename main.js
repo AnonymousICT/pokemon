@@ -3,20 +3,27 @@ const POKEMON_URL = "https://pokeapi.co/api/v2"
 function getPokemonData(userInput, callback) {
 	//get data from api
 	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
+	try {
+		$.getJSON(userSelection, function(data){
+			console.log(data)});
+	}
+	catch(error) {
+		console.log('error!');
+		console.log(error);
+	}
+		
 	$.getJSON(userSelection, function(data) {
 		let typeA = data.types[0].type.name;
 		let typeB = '';
 		if (data.types.length>1) {
-		typeB = data.types[1].type.name;
+			typeB = data.types[1].type.name;
 		};
-		
 		$('.results').html(`
 			<h1>Pokemon #: ${data.id} ${data.name}</h1>
 			<h2>Type(s): </h2><h3>${typeA}<br>${typeB}</h3>
 			<img class="sprite" src="pokemon/${data.id}.png">
 
-			`
-			);
+		`);
 		console.log(typeA, typeB);
 		getPokemonTypeData(typeA, typeB).then(function(results){
 			setTimeout(function(){

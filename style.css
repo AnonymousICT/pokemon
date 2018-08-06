@@ -12,3 +12,7 @@ body {
 ul li {
 	list-style: none;
 }
+
+.results h1 {
+	text-transform: capitalize;
+}
