@@ -99,7 +99,7 @@ async function getPokemonTypeData(typeA, typeB) {
 //this eventually just turned into the place where I have all of my event listeners
 function userPokemonSelection () {
 	//submitbutton
-	$('#form').submit(function(event){
+	$('form').submit(function(event){
 		event.preventDefault();
 		let userInput = $('#pokemonName').val().trim().toLowerCase();
 		getPokemonData(userInput);
