@@ -16,25 +16,102 @@ main {
 ul li {
 	list-style: none;
 }
+.typeResults p {
+	padding: 5px;
+	border: 2px solid black;
+	margin: 5px;
+	color: black
+}
+.normal{
+	background-color: #ADA594;
+}
+
+.fire {
+	background-color: #F75231;
+}
+
+.water {
+	background-color: #399CFF;
+}
+.electric {
+	background-color: #FFC631;
+}
+
+.grass{
+	background-color: #7BCE52;
+}
+
+.ice {
+	background-color: #5ACEE7;
+}
+
+.fighting {
+	background-color: #A55239;
+}
+
+.poison {
+	background-color: #B55AA5;
+}	
+
+.ground {
+	background-color: #D6B55A;
+}
+
+.flying {
+	background-color: #9CADF7;
+}
+
+.psychic {
+	background-color: #FF73A5;
+}
+
+.bug {
+	background-color: #ADBD21;
+}	
+
+.rock {
+	background-color: #BDA55A;
+}
+
+.ghost {
+	background-color: #6363B5;
+}
+
+.dragon {
+	background-color: #7B63E7;
+}
+
+.steel {
+	background-color: #ADADC6;
+}
+
+.dark {
+	background-color: #735A4A;
+}
+
+.fairy {
+	background-color: #F7B5F7;
+}
 
 .theme-pokeball{
-	background-color: #c31d1d;
+	background-color: #e65b41;
 	color: white;
 }
 
 .theme-greatball{
-	background-color: #2b85c1;
+	background-color: #5bbfec;
+	background-position: right;
 	color: snow;
 }
 
 .theme-ultraball{
-	background-color: #484848;
+	background-color: #010101;
 	color: #f3f326;
 }
 
 .theme-masterball {
-	background-color: #521560;
-	color: #f570d6;
+	background-color: #957b99;
+	color: #f9d3e0;
 }
 
 .results h1 {
