@@ -16,11 +16,23 @@ main {
 ul li {
 	list-style: none;
 }
+
+.restuls {
+	display: flex;
+	flex-direction: column;
+}
+.sprite {
+	height: 258px;
+}
 .typeResults p {
 	padding: 5px;
 	border: 2px solid black;
 	margin: 5px;
 	color: black
+}
+
+.theme-ultraball .typeResults p{
+	border-color: white;
 }
 .normal{
 	background-color: #ADA594;
