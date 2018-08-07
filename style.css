@@ -4,11 +4,17 @@
     box-sizing: border-box;
     font-family: 'Zilla Slab', serif;
 }
-
+header {
+	text-align: center;
+    margin: 0 5px;
+}
 body {
 	display: flex;
     flex-direction: column;
+    flex-grow: 1;
     align-items: center;
+    padding-top: 20px;
+    min-height: 100vh
 }
 main {
 	flex:1 0 auto;
@@ -17,18 +23,28 @@ ul li {
 	list-style: none;
 }
 
-.restuls {
+h1 {
+	margin-top: 20px;
+}
+
+.results {
 	display: flex;
 	flex-direction: column;
+	text-align: center;
+}
+
+.results h3 {
+	    text-transform: capitalize;
 }
 .sprite {
-	height: 258px;
+	width: 100%;
 }
 .typeResults p {
 	padding: 5px;
 	border: 2px solid black;
 	margin: 5px;
-	color: black
+	color: black;
+	text-transform: capitalize;
 }
 
 .theme-ultraball .typeResults p{
@@ -117,7 +133,7 @@ ul li {
 }
 
 .theme-ultraball{
-	background-color: #010101;
+	background-color: #4b4b4b;
 	color: #f3f326;
 }
 
@@ -131,6 +147,7 @@ ul li {
 }
 
 .themeToggle {
+	margin: 15px;
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,7 +169,14 @@ ul li {
 
 }
 footer{
-	flex-shrink: 0
+	padding: 10px 0;
+	width: 100%;
+    background-color: white;
+    position: sticky;
+    bottom: 0px;
+    text-align: center;
+    border-top: 5px solid black;
+    flex-shrink: 0;
 }
 
 footer ul li {
