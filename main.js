@@ -1,5 +1,6 @@
 const POKEMON_URL = "https://pokeapi.co/api/v2";
 
+//ajax retrives data based off of the userinput. User input can be either a string or a number
 function getPokemonData(userInput, callback){
 	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
 	let typeA;
@@ -13,7 +14,7 @@ function getPokemonData(userInput, callback){
 		},
 		// success: displayPokemonData(result),
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-     		alert("some error");
+     		alert("Sorry that's an invalid search.");
      	}
  	})
 }
@@ -24,12 +25,13 @@ function displayPokemonData (data) {
 	if (data.types.length>1) {
 		typeB = data.types[1].type.name;
 	};
+	//this will show the pokemon's "pokedex" number, name and the type(s)
 	$('.results').html(`
 		<h1>Pokemon #: ${data.id} ${data.name}</h1>
 		<h2>Type(s): </h2>
 		<h3>${typeA}<br>${typeB}</h3>
 		<div class="imgWrapper">
-		<img class="sprite" src="assets/pokemon/${data.id}.png">
+		<img class="sprite" src="assets/pokemon/${data.id}.png" alt=${data.name}>
 		</div>
 	`);
 	console.log(typeA, typeB);
@@ -63,6 +65,7 @@ function displayPokemonData (data) {
 	displayTypeData(typeMultiplier)
 }
 
+//gets type data from the API and multiplies the results to the typeMultiplier Object above
 function getTypeData(type,typeMultiplier) {
 	$.ajax({
 		type: "GET",
@@ -97,19 +100,49 @@ function displayTypeData(result){
 
 //this eventually just turned into the place where I have all of my event listeners
 function userPokemonSelection () {
+
 	//submitbutton
 	$('form').submit(function(event){
+
+		let edgeCases = {
+			'deoxys': 'deoxys-normal',
+			'wormadam': 'wormadam-plant',
+			'giratina': 'giratina-altered',
+			'shaymin': 'shaymin-land',
+			'basculin': 'basculin-red-striped',
+			'darmanitan': 'darmanitan-standard',
+			'tornadus': 'tornadus-incarnate',
+			'thundurus': 'thundurus-incarnate',
+			'landorus': 'landorus-incarnate',
+			'keldeo': 'keldeo-ordinary',
+			'meloetta': 'meloetta-aria',
+			'aegislash': 'aegislash-shield',
+			'pumpkaboo': 'pumpkaboo-average',
+			'gourgeist': 'gourgeist-average',
+			'oricorio': 'oricorio-baile',
+			'lycanroc': 'lycanroc-midday',
+			'wishiwashi': 'wishiwashi-solo',
+			'minior': 'minior-red-meteor',
+			'mimikyu': 'mimikyu-disguised'
+		}
+
 		event.preventDefault();
+		//userInput can be a string or a number
 		let userInput = $('#pokemonName').val().trim().toLowerCase();
-		getPokemonData(userInput);
-		if(userInput <=0) {
+		if(userInput <=0 || userInput>802) {
 			alert("You're a moron")
+		} else if (userInput in edgeCases){
+			getPokemonData(edgeCases[userInput]);
+			console.log(edgeCases[userInput])
+		} else {
+			getPokemonData(userInput);
 		}
 	})
 
 	//randombutton
 	$('.randomButton').on('click', function(){
-		let userInput = Math.floor(Math.random() * Math.floor(802));
+		//randomly chooses number between 1-802
+		let userInput = Math.floor(Math.random() * Math.floor(801))+1;
 		getPokemonData(userInput);
 		console.log(userInput)
 	})
