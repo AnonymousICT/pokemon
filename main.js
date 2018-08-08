@@ -34,7 +34,6 @@ function displayPokemonData (data) {
 		<img class="sprite" src="assets/pokemon/${data.id}.png" alt=${data.name}>
 		</div>
 	`);
-	console.log(typeA, typeB);
 	
 	let typeMultiplier = {
 		normal:1,
@@ -86,7 +85,6 @@ function getTypeData(type,typeMultiplier) {
 }
 
 function displayTypeData(result){
-	console.log(result, 'please work?');
 	let typeArr =[]
 	setTimeout(function(){
 		for(let key in result) {
@@ -144,7 +142,6 @@ function userPokemonSelection () {
 		//randomly chooses number between 1-802
 		let userInput = Math.floor(Math.random() * Math.floor(801))+1;
 		getPokemonData(userInput);
-		console.log(userInput)
 	})
 	//click on a pokeball
 	$('.themeToggle li').click(function() {
