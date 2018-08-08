@@ -1,15 +1,14 @@
-const POKEMON_URL = "https://pokeapi.co/api/v2"
+const POKEMON_URL = "https://pokeapi.co/api/v2";
 
 function getPokemonData(userInput, callback){
 	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
-		let typeA;
-		let typeB;
+	let typeA;
+	let typeB;
 	$.ajax({
 		type: "GET",
 		url: userSelection,
 		dataType: "JSON",
 		success: function(result) {
-			console.log('success!',result);
 			displayPokemonData(result);
 		},
 		// success: displayPokemonData(result),
@@ -21,37 +20,20 @@ function getPokemonData(userInput, callback){
 
 function displayPokemonData (data) {
 	typeA = data.types[0].type.name;
-		 typeB = '';
-		if (data.types.length>1) {
-			typeB = data.types[1].type.name;
-		};
-		$('.results').html(`
-			<h1>Pokemon #: ${data.id} ${data.name}</h1>
-			<h2>Type(s): </h2>
-			<h3>${typeA}<br>${typeB}</h3>
-			<div class="imgWrapper">
-			<img class="sprite" src="assets/pokemon/${data.id}.png">
-			</div>
-		`);
-		console.log(typeA, typeB);
-		displayTypeData(typeA, typeB)
-}
-function displayTypeData(typeA, typeB,){
-	getPokemonTypeData(typeA, typeB).then(function(results){
-		setTimeout(function(){
-			console.log(results, 'please work?')
-			let typeArr =[]
-			for(let key in results) {
-				typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
-			};
-			$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
-		},3000);
-	});
-
-}
-
-
-async function getPokemonTypeData(typeA, typeB) {
+	typeB = '';
+	if (data.types.length>1) {
+		typeB = data.types[1].type.name;
+	};
+	$('.results').html(`
+		<h1>Pokemon #: ${data.id} ${data.name}</h1>
+		<h2>Type(s): </h2>
+		<h3>${typeA}<br>${typeB}</h3>
+		<div class="imgWrapper">
+		<img class="sprite" src="assets/pokemon/${data.id}.png">
+		</div>
+	`);
+	console.log(typeA, typeB);
+	
 	let typeMultiplier = {
 		normal:1,
 	    fire:1,
@@ -73,35 +55,44 @@ async function getPokemonTypeData(typeA, typeB) {
 	    fairy:1
 	};
 
-	$.getJSON(`${POKEMON_URL}/type/${typeA}`).done(function(typeAData){
-			for(let i=0; i<typeAData.damage_relations.double_damage_from.length; i++) {
-				typeMultiplier[typeAData.damage_relations.double_damage_from[i].name]*=2.0;
+	getTypeData(typeA,typeMultiplier);
+	if(typeB) {
+		getTypeData(typeB,typeMultiplier);
+	}
+
+	displayTypeData(typeMultiplier)
+}
+
+function getTypeData(type,typeMultiplier) {
+	$.ajax({
+		type: "GET",
+		url: `${POKEMON_URL}/type/${type}`,
+		datatype: "JSON",
+		success: function(result) {
+			for(let i=0; i<result.damage_relations.double_damage_from.length; i++) {
+				typeMultiplier[result.damage_relations.double_damage_from[i].name]*=2.0;
 			}
-			for(let j=0; j<typeAData.damage_relations.half_damage_from.length; j++) {
-				typeMultiplier[typeAData.damage_relations.half_damage_from[j].name]*=0.5;
+			for(let j=0; j<result.damage_relations.half_damage_from.length; j++) {
+				typeMultiplier[result.damage_relations.half_damage_from[j].name]*=0.5;
 			}
-			for(let k=0; k<typeAData.damage_relations.no_damage_from.length; k++) {
-				typeMultiplier[typeAData.damage_relations.no_damage_from[k].name]*=0.0;
+			for(let k=0; k<result.damage_relations.no_damage_from.length; k++) {
+				typeMultiplier[result.damage_relations.no_damage_from[k].name]*=0.0;
 			}
 		}
-	)
-	if (typeB) {
-		$.getJSON(`${POKEMON_URL}/type/${typeB}`).done(function(typeBData){
-				for(let i=0; i<typeBData.damage_relations.double_damage_from.length; i++) {
-				typeMultiplier[typeBData.damage_relations.double_damage_from[i].name]*=2.0;
-				}
-				for(let j=0; j<typeBData.damage_relations.half_damage_from.length; j++) {
-				typeMultiplier[typeBData.damage_relations.half_damage_from[j].name]*=0.5;
-				}
-				for(let k=0; k<typeBData.damage_relations.no_damage_from.length; k++) {
-				typeMultiplier[typeBData.damage_relations.no_damage_from[k].name]*=0.0;
-				}
-			}
-		)
+	});
+}
+
+function displayTypeData(result){
+	console.log(result, 'please work?');
+	let typeArr =[]
+	setTimeout(function(){
+		for(let key in result) {
+			typeArr.push("<li><p class='" + key + "'>" + key + ":" + result[key] + "x</p></li>")
+		};
+		$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`
+		);
 	}
-	return new Promise(function(resolve,reject) {
-		resolve(typeMultiplier);
-	})
+	,1000);
 };
 
 //this eventually just turned into the place where I have all of my event listeners
