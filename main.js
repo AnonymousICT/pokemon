@@ -28,7 +28,7 @@ function getPokemonData(userInput, callback) {
 					typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
 				};
 				$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
-			},3000);
+			},5000);
 		});
 	});
 };
