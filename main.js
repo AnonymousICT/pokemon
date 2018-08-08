@@ -34,16 +34,20 @@ function displayPokemonData (data) {
 			</div>
 		`);
 		console.log(typeA, typeB);
-		getPokemonTypeData(typeA, typeB).then(function(results){
-			setTimeout(function(){
-				console.log(results, 'please work?')
-				let typeArr =[]
-				for(let key in results) {
-					typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
-				};
-				$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
-			},3000);
-		});
+		displayTypeData(typeA, typeB)
+}
+function displayTypeData(typeA, typeB,){
+	getPokemonTypeData(typeA, typeB).then(function(results){
+		setTimeout(function(){
+			console.log(results, 'please work?')
+			let typeArr =[]
+			for(let key in results) {
+				typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
+			};
+			$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
+		},3000);
+	});
+
 }
 
 
