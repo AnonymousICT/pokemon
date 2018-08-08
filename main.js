@@ -33,6 +33,7 @@ function getPokemonData(userInput, callback) {
 	});
 };
 
+
 async function getPokemonTypeData(typeA, typeB) {
 	let typeMultiplier = {
 		normal:1,
@@ -111,11 +112,6 @@ function userPokemonSelection () {
   		$('body').addClass('theme-'+$(this).attr('class'));
 	 	$(this).siblings().removeClass('selected');
 	 	$(this).addClass('selected');
-	})
-	//hover over a pokeball
-	$('.themeToggle li').hover(function(){
-		
-		// $(this).css(`background-image`, url(`assets/gifs/${hoverVariable}_roll01.gif`));
 	})
 }
 
