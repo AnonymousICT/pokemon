@@ -6,8 +6,15 @@
 
 }
 header {
+	display: flex;
+    flex-direction: column;
+    width: 40%;
 	text-align: center;
     margin: 0 5px;
+}
+header p {
+	padding: 5px;
+	border: solid 2px;
 }
 body {
 	display: flex;
@@ -60,6 +67,7 @@ h1 {
 .typeResults {
 	margin-bottom: 10px;
 }
+
 .typeResults p {
 	padding: 5px;
 	border: 2px solid black;
@@ -202,4 +210,21 @@ footer{
 
 footer ul li {
 	display: inline-block;
+}
+.typeList li {
+	list-style-type: none;
+}
+
+@media screen and (max-width: 450px){
+	header{
+		width: 80%
+	}
+}
+
+@media screen and (max-width: 768px){
+	header{
+		width: 65%
+	}
+}
+
 }

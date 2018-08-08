@@ -3,18 +3,11 @@ const POKEMON_URL = "https://pokeapi.co/api/v2"
 function getPokemonData(userInput, callback) {
 	//get data from api
 	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
-	try {
-		$.getJSON(userSelection, function(data){
-			console.log(data)});
-	}
-	catch(error) {
-		console.log('error!');
-		console.log(error);
-	}
-		
+		let typeA;
+		let typeB;
 	$.getJSON(userSelection, function(data) {
-		let typeA = data.types[0].type.name;
-		let typeB = '';
+		typeA = data.types[0].type.name;
+		 typeB = '';
 		if (data.types.length>1) {
 			typeB = data.types[1].type.name;
 		};
@@ -30,15 +23,12 @@ function getPokemonData(userInput, callback) {
 		getPokemonTypeData(typeA, typeB).then(function(results){
 			setTimeout(function(){
 				console.log(results, 'please work?')
-				$('.typeResults').html(`<ul>`);
+				let typeArr =[]
 				for(let key in results) {
-					// console.log(key, results[key]);
-					$('.typeResults').append(`
-						<p class="${key}">${key}: ${results[key]} x</p>
-					`);
+					typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
 				};
-				$('typeResults').append(`</ul>`);
-			},5000);
+				$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
+			},3000);
 		});
 	});
 };
@@ -103,12 +93,16 @@ function userPokemonSelection () {
 		event.preventDefault();
 		let userInput = $('#pokemonName').val().trim().toLowerCase();
 		getPokemonData(userInput);
+		if(userInput <=0) {
+			alert("You're a moron")
+		}
 	})
 
 	//randombutton
 	$('.randomButton').on('click', function(){
 		let userInput = Math.floor(Math.random() * Math.floor(802));
 		getPokemonData(userInput);
+		console.log(userInput)
 	})
 	//click on a pokeball
 	$('.themeToggle li').click(function() {
