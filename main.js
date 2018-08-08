@@ -1,12 +1,26 @@
 const POKEMON_URL = "https://pokeapi.co/api/v2"
 
-function getPokemonData(userInput, callback) {
-	//get data from api
+function getPokemonData(userInput, callback){
 	let userSelection = `${POKEMON_URL}/pokemon/${userInput}`;
 		let typeA;
 		let typeB;
-	$.getJSON(userSelection, function(data) {
-		typeA = data.types[0].type.name;
+	$.ajax({
+		type: "GET",
+		url: userSelection,
+		dataType: "JSON",
+		success: function(result) {
+			console.log('success!',result);
+			displayPokemonData(result);
+		},
+		// success: displayPokemonData(result),
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+     		alert("some error");
+     	}
+ 	})
+}
+
+function displayPokemonData (data) {
+	typeA = data.types[0].type.name;
 		 typeB = '';
 		if (data.types.length>1) {
 			typeB = data.types[1].type.name;
@@ -28,10 +42,9 @@ function getPokemonData(userInput, callback) {
 					typeArr.push("<li><p class='" + key + "'>" + key + ":" + results[key] + "x</p></li>")
 				};
 				$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`);
-			},5000);
+			},3000);
 		});
-	});
-};
+}
 
 
 async function getPokemonTypeData(typeA, typeB) {
