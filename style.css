@@ -48,9 +48,14 @@ h1 {
 	padding: 5px;
 }
 #submit {
+	font-size: 12pt;
+    font-weight: bold;
 	width: 100%;
 	margin-top: 10px;
 
+}
+.randomButton{
+    font-weight: bold;
 }
 .results {
 	display: flex;
@@ -152,13 +157,12 @@ h1 {
 
 .theme-pokeball{
 	background-color: #e65b41;
-	color: white;
+	color: black;
 }
 
 
 .theme-greatball{
-	background-color: #5bbfec;
-	background-position: right;
+	background-color: #2983bf;
 	color: snow;
 }
 
@@ -168,8 +172,8 @@ h1 {
 }
 
 .theme-masterball {
-	background-color: #957b99;
-	color: #f9d3e0;
+	background-color: #9a3cb1;
+	color: white;
 }
 
 .results h1 {
@@ -215,9 +219,14 @@ footer{
     border-top: 5px solid black;
     flex-shrink: 0;
 }
-
+footer p {
+	color: black;
+}
 footer ul li {
 	display: inline-block;
+	margin: 0 40px;
+    font-size: 14pt;
+
 }
 .typeList {
 	display: flex;

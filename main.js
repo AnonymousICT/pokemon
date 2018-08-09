@@ -14,7 +14,7 @@ function getPokemonData(userInput, callback){
 		},
 		// success: displayPokemonData(result),
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-     		alert("Sorry that's an invalid search.");
+     		alert("Sorry that's an invalid search or the search has timed out.");
      	}
  	})
 }
@@ -128,10 +128,9 @@ function userPokemonSelection () {
 		//userInput can be a string or a number
 		let userInput = $('#pokemonName').val().trim().toLowerCase();
 		if(userInput <=0 || userInput>802) {
-			alert("You're a moron")
+			alert("User Input of 0 or greater 802 has been detected")
 		} else if (userInput in edgeCases){
 			getPokemonData(edgeCases[userInput]);
-			console.log(edgeCases[userInput])
 		} else {
 			getPokemonData(userInput);
 		}
