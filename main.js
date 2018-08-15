@@ -100,7 +100,12 @@ function displayTypeData(result){
 function autocomplete () {
 	$('#pokemonName').autocomplete({
 		minLength: 1,
-		source: STORE
+		source: function( request, response ) {
+          let matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+          response( $.grep( STORE, function( item ){
+              return matcher.test( item );
+          }) );
+		}
 	});
 }
 
