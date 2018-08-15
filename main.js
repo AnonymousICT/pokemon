@@ -96,6 +96,14 @@ function displayTypeData(result){
 	,1000);
 };
 
+
+function autocomplete () {
+	$('#pokemonName').autocomplete({
+		minLength: 1,
+		source: STORE
+	});
+}
+
 //this eventually just turned into the place where I have all of my event listeners
 function userPokemonSelection () {
 
@@ -154,6 +162,7 @@ function userPokemonSelection () {
 
 function initializeSearchPage () {
 userPokemonSelection();
+autocomplete();
 }
 
 $(initializeSearchPage);

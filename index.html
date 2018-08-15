@@ -6,6 +6,9 @@
 	<title>Pokemon Damage Relation Search</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="resources/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="resources/jquery-ui.structure.css">
+	<link rel="stylesheet" type="text/css" href="resources/jquery-ui.theme.css">
 </head>
 <body class="theme-pokeball">
 	<header role="banner">
@@ -25,8 +28,8 @@
 	</header>
 	<main role="main">
 		<section role ="region">
-			<form id="form">
-				<input type="text" size="26" name="pokemonName" id="pokemonName"  placeholder="Pokemon Name or Pokedex Number">
+			<form id="form" class="ui-widget">
+				<input type="text" size="26" name="q" id="pokemonName" class="ui-autocomplete" placeholder="Pokemon Name or Pokedex Number">
 				<input id="submit" type="submit" value="Search">
 			</form>
 			<button class="randomButton">Random Pokemon</button>
@@ -48,6 +51,9 @@
 	</footer>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="store.js"></script>
 	<script type="text/javascript" src="main.js"></script>
+	
 </body>
 </html>

@@ -46,6 +46,7 @@ h1 {
 #pokemonName {
 	width: 100%;
 	padding: 5px;
+	position: static;
 }
 #submit {
 	font-size: 12pt;
@@ -255,4 +256,11 @@ footer ul li {
 	.typeList{
 		max-height: 300px;
 	}
+}
+
+.ui-autocomplete {
+	max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
 }
