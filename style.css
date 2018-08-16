@@ -258,6 +258,16 @@ footer ul li {
 	list-style-type: none;
 }
 
+
+@media screen and (max-width: 768px){
+	header{
+		width: 65%
+	}
+	.typeList {
+		max-height: 300px;
+	}
+}
+
 @media screen and (max-width: 425px){
 	header{
 		width: 80%
@@ -269,13 +279,6 @@ footer ul li {
 		width: 50%;
 	}
 }
-
-@media screen and (max-width: 768px){
-	header{
-		width: 65%
-	}
-}
-
 .ui-autocomplete {
 	max-height: 100px;
     overflow-y: auto;
