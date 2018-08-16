@@ -44,6 +44,16 @@ h1 {
 width: 50%;
 margin:0 auto;
 }
+
+#landingPage h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+#landingPage ul {
+	border:1px solid;
+	padding: 10px;
+	margin-bottom: 30px;
+}
 .bold {
 	font-weight: bold;
 }
@@ -76,7 +86,7 @@ margin:0 auto;
 	    text-transform: capitalize;
 }
 .sprite {
-	width: 60%;
+	width: 20%;
 }
 .typeResults {
 	margin-bottom: 10px;
@@ -253,7 +263,7 @@ footer ul li {
 		width: 80%
 	}
 	.typeList {
-		max-height: 300px;
+		max-height: 400px;
 	}
 }
 
