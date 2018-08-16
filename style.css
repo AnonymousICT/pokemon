@@ -274,9 +274,9 @@ footer ul li {
 	header{
 		width: 65%
 	}
-	.typeList{
+	/*.typeList{
 		max-height: 300px;
-	}
+	}*/
 }
 
 .ui-autocomplete {
