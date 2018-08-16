@@ -116,6 +116,8 @@ function userPokemonSelection () {
 	$('form').submit(function(event){
 
 		let edgeCases = {
+			'nidoran♀':'nidoran-f',
+			'nidoran♂': 'nidoran-m',
 			'deoxys': 'deoxys-normal',
 			'wormadam': 'wormadam-plant',
 			'giratina': 'giratina-altered',
