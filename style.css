@@ -39,6 +39,14 @@ ul li {
 h1 {
 	margin-top: 20px;
 }
+
+#landingPage{
+width: 50%;
+margin:0 auto;
+}
+.bold {
+	font-weight: bold;
+}
 #form {
 	margin: 10px 0;
 }

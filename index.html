@@ -13,7 +13,6 @@
 <body class="theme-pokeball">
 	<header role="banner">
 		<h1>Pokemon Damage Relation Search</h1>
-		<p>I made this web app because I, personally, could never remember what would one-shot (deal damage to my Pokemon to reduce its health from full to zero) my Pokemon. This web app uses pokeapi.co to display the pokedex number, the Pokemon's name, the type(s) of the Pokemon and the defensive damage relationships from all the attack types in the Pokemon video game universe. - Howard Kuo</p>
 		<div class="themeToggle">
 		    <h3>Click on any Pokeball to change theme</h3>
 		    <p>Pokeball art assets are courtesy of Melissa Palacios</p>
@@ -27,12 +26,20 @@
 		</div>
 	</header>
 	<main role="main">
-		<section role ="region">
+		<section role ="region" id="landingPage">
+			<div id="wrapper">
+				<h2>This application allows you to determine how the requested pokemon fares against various damage types</h2>
+				<h3>Patch notes 1.1</h3>
+					<ul>
+						<li>Don't remember how to spell your favorite Pokemon? Autocomplete has been added!</li>
+						<li>Hover instructions have been added to the form</li>
+					</ul>
+				</div>
 			<form id="form" class="ui-widget">
-				<input type="text" size="26" name="q" id="pokemonName" class="ui-autocomplete" placeholder="Pokemon Name or Pokedex Number">
+				<input type="text" size="26" name="q" id="pokemonName" class="ui-autocomplete" placeholder="Pokemon Name or Pokedex Number" title="If you don't know any Pokemon, try searching Bulbasaur, Pikachu, Dragonite, or Giratina">
 				<input id="submit" type="submit" value="Search">
 			</form>
-			<button class="randomButton">Random Pokemon</button>
+			<button class="randomButton" title="802 pokemon is a lot to choose from. Click here to be surprised!">Random Pokemon</button>
 		</section>
 		<section role="region" class="results" aria-live="assertive">
 		</section>

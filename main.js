@@ -149,6 +149,10 @@ function userPokemonSelection () {
 		}
 	})
 
+	//tool-tip
+	$('document').tooltip()
+	
+
 	//randombutton
 	$('.randomButton').on('click', function(){
 		//randomly chooses number between 1-802
