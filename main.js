@@ -93,7 +93,7 @@ function displayTypeData(result){
 		$('.typeResults').html("").append(`<ul class="typeList">${typeArr.join("")}</ul>`
 		);
 	}
-	,1000);
+	,2000);
 };
 
 
