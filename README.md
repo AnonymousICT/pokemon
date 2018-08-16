@@ -2,7 +2,7 @@
   A link to live app
   https://anonymousict.github.io/pokemon-damage-relation-search/index.html
   
-  Summary
+  Summary;
     This is a web app that searches through Pokeapi.co to bring a user the following data:
       -Pokedex number
       -Pokemon name
