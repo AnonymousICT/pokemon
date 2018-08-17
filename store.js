@@ -81,7 +81,7 @@ const STORE =[
 	"Slowbro",
 	"Magnemite",
 	"Magneton",
-	"Farfetch’d",
+	"Farfetchd",
 	"Doduo",
 	"Dodrio",
 	"Seel",

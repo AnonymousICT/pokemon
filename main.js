@@ -118,6 +118,9 @@ function userPokemonSelection () {
 		let edgeCases = {
 			'nidoran♀':'nidoran-f',
 			'nidoran♂': 'nidoran-m',
+			'mr. mime': 'mr-mime',
+			'mime jr.': 'mime-jr',	
+			'type: null': 'type-null',
 			'deoxys': 'deoxys-normal',
 			'wormadam': 'wormadam-plant',
 			'giratina': 'giratina-altered',
