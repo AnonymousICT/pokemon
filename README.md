@@ -5,10 +5,10 @@
   
   Screenshots:
   
-![shot 1](https://user-images.githubusercontent.com/36713084/44241273-b2ef2f80-a177-11e8-81ce-efcd54d891a9.PNG)
-![shot 2](https://user-images.githubusercontent.com/36713084/44241274-b387c600-a177-11e8-9eab-32366d8c0c28.PNG)
-![shot 3](https://user-images.githubusercontent.com/36713084/44241275-b387c600-a177-11e8-85f5-362db131b2be.PNG)
-![shot 4](https://user-images.githubusercontent.com/36713084/44241276-b387c600-a177-11e8-9c66-28373d05bb35.PNG)
+  ![shot 1](https://user-images.githubusercontent.com/36713084/44241273-b2ef2f80-a177-11e8-81ce-efcd54d891a9.PNG)
+  ![shot 2](https://user-images.githubusercontent.com/36713084/44241274-b387c600-a177-11e8-9eab-32366d8c0c28.PNG)
+  ![shot 3](https://user-images.githubusercontent.com/36713084/44241275-b387c600-a177-11e8-85f5-362db131b2be.PNG)
+  ![shot 4](https://user-images.githubusercontent.com/36713084/44241276-b387c600-a177-11e8-9c66-28373d05bb35.PNG)
 
   
   
@@ -26,13 +26,13 @@
       
       -The damage multiplier that the pokemon will receive from all 18 types
     
-  Technology used
+  Technology used:
   
-  -Html
+    -Html
   
-  -CSS
+    -CSS
   
-  -Javascript
+    -Javascript
   
-  -jQuery
+    -jQuery
   
