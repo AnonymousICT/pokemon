@@ -1,7 +1,10 @@
-# pokemon-damage-relation-search
+# pokemon-type-advantage-search
   A link to live app
   https://anonymousict.github.io/pokemon-damage-relation-search/index.html
   
+  Why does this need to exist?
+  
+  You can certainly go to other pokemon reference sites like bulbapedia, serebii or smogon. Their information would be more     comprehensive but you have to sift through so much. (Evolution paths, Egg groups, when it shows up in the anime, what generation of pokemon it belongs to, etc.) Outside of competitive play, most people don't need that kind of information. I made this for the person who can't remember type advantages much less the fact that there are 18 types. It's a simple search that gets the pokemon and gives you the information that most people want in the first place without anything excessive.
   
   Screenshots:
   
