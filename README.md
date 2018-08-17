@@ -1,6 +1,6 @@
 # pokemon-type-advantage-search
   A link to live app
-  https://anonymousict.github.io/pokemon-damage-relation-search/index.html
+  https://anonymousict.github.io/pokemon-type-advantage-search/
   
   Why does this need to exist?
   
